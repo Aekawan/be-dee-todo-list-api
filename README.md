@@ -130,6 +130,7 @@ npm run test:cov
 
 ## Project Structure
 
+```bash
 src/
 |-- app.controller.ts
 |-- app.module.ts
@@ -141,6 +142,7 @@ src/
     |-- todos.service.ts
 |-- db/
     |-- todos.json
+```
 
 ## Technologies Used
 

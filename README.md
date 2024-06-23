@@ -1,73 +1,150 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# NodeJS (NestJS) BeDee To-Do List API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+This is a simple To-Do List API built with NestJS. The application supports creating, reading, updating, and deleting tasks, and stores data in a JSON file.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Prerequisites
 
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- Node.js (>= 16.x)
+- npm (>= 6.x)
 
 ## Installation
 
-```bash
-$ npm install
-```
-
-## Running the app
+### Clone the repository
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+git clone https://github.com/Aekawan/be-dee-todo-list-api.git
+cd be-dee-todo-list-api
 ```
 
-## Test
+### Install dependencies
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npm install
 ```
 
-## Support
+### Running the application
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Development mode
 
-## Stay in touch
+```bash
+npm run start:dev
+```
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+Production mode
 
-## License
+```bash
+npm run build
+npm run start:prod
+```
 
-Nest is [MIT licensed](LICENSE).
+The application will be running at <http://localhost:3000>.
+
+## API Endpoints
+
+- GET /todos:  Get all to-do items.
+- GET /todos/:id:  Get a specific to-do item by ID.
+- POST /todos:  Create a new to-do item.
+- PUT /todos/:id:  Update a specific to-do item by ID.
+- DELETE /todos/:id: Delete a specific to-do item by ID.
+
+## Example To-Do List
+
+1. **ไปซื้อของวันหยุด**
+   - [ ] ทำรายการของที่จะซื้อ
+   - [ ] ตรวจสอบของในครัว
+   - [ ] ไปตลาดสด
+   - [ ] ไปซูเปอร์มาร์เก็ต
+   - [ ] ซื้อของใช้ในบ้าน
+   - [ ] ตรวจสอบรายการของที่ซื้อครบ
+   - [ ] กลับบ้านและจัดเก็บของ
+
+## Creating a To-Do Item
+
+To create a new to-do item, send a POST request to the `/todos` endpoint with the following JSON body:
+
+```json
+{
+  "title": "ทำรายการของที่จะซื้อ",
+  "description": "จดรายการของที่ต้องซื้อทั้งหมด",
+  "isCompleted": false
+}
+```
+
+```bash
+curl -X POST http://localhost:3000/todos -H "Content-Type: application/json" -d '{
+  "title": "ทำรายการของที่จะซื้อ",
+  "description": "จดรายการของที่ต้องซื้อทั้งหมด",
+  "isCompleted": false
+}'
+```
+
+## Updating a To-Do Item
+
+To update an existing to-do item, send a PUT request to the /todos/:id endpoint with the following JSON body:
+
+```json
+{
+  "title": "ทำรายการของที่จะซื้อ",
+  "description": "จดรายการของที่ต้องซื้อทั้งหมดและเตรียมของที่ต้องการซื้อ",
+  "isCompleted": true
+}
+```
+
+```bash
+curl -X PUT http://localhost:3000/todos/1 -H "Content-Type: application/json" -d '{
+  "title": "ทำรายการของที่จะซื้อ",
+  "description": "จดรายการของที่ต้องซื้อทั้งหมดและเตรียมของที่ต้องการซื้อ",
+  "isCompleted": true
+}'
+```
+
+## Using Docker
+
+### Building the Docker image
+
+```bash
+  docker build -t be-dee-todo-list-api .
+```
+
+### Running the Docker container
+
+```bash
+  docker run -p 3000:3000 be-dee-todo-list-api
+```
+
+The application will be running at <http://localhost:3000>.
+
+## Running Tests
+
+### Unit tests
+
+```bash
+npm run test
+```
+
+### Test coverage
+
+```bash
+npm run test:cov
+```
+
+## Project Structure
+
+src/
+|-- app.controller.ts
+|-- app.module.ts
+|-- app.service.ts
+|-- main.ts
+|-- todos/
+    |-- todos.controller.ts
+    |-- todos.module.ts
+    |-- todos.service.ts
+|-- db/
+    |-- todos.json
+
+## Technologies Used
+
+- NestJS
+- TypeScript
+- Jest
+- Docker
